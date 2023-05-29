@@ -1,0 +1,160 @@
+.createprofile_wrapper .div1{
+    flex: 2;
+}
+.createprofile_wrapper .div2{
+    flex: 1;
+    border: 1px solid gray;
+    border-radius: 14px;
+}
+.divider{
+    border-bottom: 1px solid #c1b9b9;
+}
+.smallinfo_wrapper{
+    margin-top: 50px;
+}
+.carduserimg img{
+    width: 120px;
+    height: 120px;
+}
+.carduserimg{
+    position: relative;
+}
+
+.userimgoverlay{
+    bottom: 5px;
+    position: absolute;
+    background: #d3d30d;
+    width: 26px;
+    height: 26px;
+    right: 6px;
+}
+.text-small{
+    font-size: 12px;
+    font-weight: 600;
+}
+.getstarted_btn{
+    background-color: green !important;
+    padding-left: 15px !important;
+    color: white !important;
+    padding-right: 15px !important;
+}
+.addlanguagebtn{
+    background-color: white !important;
+    border: 2px solid green;
+    color: green !important;
+}
+.filterpara{
+    font-weight: 700;
+    font-size: 14px;
+}
+.filterdesc{
+    font-size: 13px;
+}
+.reactselect_wrapper{
+    flex: 1;
+}
+.react-select-container {
+    background: var(--react-select-control-bg);
+    border-radius: 10px;
+    width: 97%;
+    border-color: var(--text-primary);
+  }
+  .react-select__control {
+    background: var(--react-select-control-bg);
+    border-radius: 10px;
+    width: 50%;
+    float: left;
+    border-color: var(--editColor);
+  }
+  .react-select__menu {
+    background: var(--react-select-control-bg);
+  }
+  .react-select__option {
+    border-color: var(--text-primary);
+    background: #FFF;
+    }
+/* .react-select__option:hover{
+      background-color: #000222;
+  } */
+  .react-select__input-container{
+    padding: 0px ;
+    margin: 0px ;
+  }
+  .react-select__option:active, .react-select__option:hover {
+    color: #66c5cc;
+    cursor: pointer
+  }
+ 
+  .skills_wrapper {
+    width: 70%;
+    justify-content: start;
+}
+
+/* multiselect css  */
+.react-select-multi-container {
+    background: var(--react-select-multi-control-bg);
+    border-radius: 10px;
+    width: 97%;
+    border-color: var(--text-primary);
+  }
+  .react-select-multi__control {
+    background: var(--react-select-multi-control-bg);
+    border-radius: 10px;
+    width: 100%;
+    float: left;
+    border-color: var(--editColor);
+  }
+  .react-select-multi__menu {
+    background: var(--react-select-multi-control-bg);
+  }
+  .react-select-multi__option {
+    border-color: var(--text-primary);
+    background: #FFF;
+    }
+/* .react-select-multi__option:hover{
+      background-color: #000222;
+  } */
+  .react-select-multi__input-container{
+    padding: 0px ;
+    margin: 0px ;
+  }
+  .react-select-multi__option:active, .react-select__option:hover {
+    color: #66c5cc;
+    cursor: pointer
+  }
+  .react-select-multi__multi-value__label{
+    color: white !important;
+  }
+  .react-select-multi__multi-value{
+    background: green !important;
+    color: white !important;
+    border-radius: 20px !important;
+  }
+  .userInfo_container{
+    flex-wrap: wrap;
+  }
+  .uploadprofile{
+    flex: 1;
+  }
+  .user_form{
+    flex: 4;
+  }
+ 
+  .user_prfile_imgwrapper img{
+          height: 120px;
+          width: 120px ;
+          object-fit: cover;
+          border-radius: 50%;
+  }
+  .selectcountry{
+    width: 50%;
+  }
+  .edit_icon_profile{
+    position: absolute;
+    bottom: 0;
+    right: 7px;
+    background-color: green;
+    border: 2px solid;
+    height: 28px !important;
+    width: 28px !important;
+  }

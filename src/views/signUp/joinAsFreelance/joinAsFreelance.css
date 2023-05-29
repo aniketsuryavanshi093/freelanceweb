@@ -1,0 +1,52 @@
+.form_body {
+  max-width: 600px;
+  width: 100%;
+  margin: 100px auto;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 30px 0;
+}
+
+.signup_head {
+  padding: 10px;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.form_box {
+  padding: 10px 30px;
+  width: 100%;
+  margin: 30px auto;
+}
+
+.name_body {
+  display: flex;
+  gap: 20px;
+}
+
+.name_input {
+  border: 1px solid rgba(88, 84, 84, 0.358);
+  border-radius: 5px;
+  padding: 2px 10px;
+  flex-grow: 1;
+  min-height: 40px;
+}
+
+.email_input {
+  margin: 20px 0 0;
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid rgba(88, 84, 84, 0.358);
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+
+.remember_checkbox {
+  height: 12px;
+  margin: 20px 10px 20px 0;
+}
+
+.remember_checkbox input:checked ~ .checkmark {
+  background-color: green;
+}

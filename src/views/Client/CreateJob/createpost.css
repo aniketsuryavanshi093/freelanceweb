@@ -1,0 +1,35 @@
+.br{
+    border-right: 1px  solid grey;
+}
+.exlist{
+    width: 90%;
+}
+.proceedbtn{
+    border: 1px solid green;
+    color: green;
+    padding: 5px;
+}
+.roundedcheck{
+   border-radius: 50%;
+   border: 1px solid grey;
+   padding: 8px
+}
+.selectTab{
+    background: #eceaea;
+    border: 2px solid grey;
+}
+.selected{
+    background: #beedae;
+    border: 2px solid green; 
+}
+.filled{
+   background-color: green;
+   border: 1px solid black;
+}
+.dolooersign{
+    bottom: 10px;
+    left: 14px;
+}
+.jobselectcontainer{
+    height: 32px;
+}
