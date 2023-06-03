@@ -1,7 +1,7 @@
 import { put } from 'redux-saga/effects';
 
 import { axios } from '../../http';
-import { refreshTokenAction } from '../../store/sagaActions';
+import { logoutAction } from '../../store/sagaActions';
 
 export default function* errorHandler({
   endpoint,
@@ -98,8 +98,8 @@ export default function* errorHandler({
           yield put(failHandler(error.response.data.message));
         }
       } else if (error.response.status === 401) {
-        yield failHandler(error.response);
-
+        // yield failHandler(error.response);
+        yield put(logoutAction());
         // yield put(refreshTokenAction());
       } else if (
         error.response.data &&
