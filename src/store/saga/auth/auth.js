@@ -3,7 +3,6 @@ import { put } from 'redux-saga/effects';
 import {
   LOGIN_URL,
   REGISTER_URL,
-  LOGOUT_URL,
   FORGOT_PASSWORD_URL,
   RESET_PASSWORD_URL,
   REFRESH_TOKEN_URL
@@ -15,15 +14,11 @@ import {
   loginStart,
   loginSuccess,
   logoutAction,
-  logoutStart,
-  logoutSuccess,
-  logoutFail,
   showModal,
   hideModal,
   forgotPasswordStart,
   forgotPasswordSuccess,
   forgotPasswordFail,
-  hideCustomModal,
   resetPasswordStart,
   resetPasswordSuccess,
   resetPasswordFail,
@@ -67,37 +62,10 @@ export function* loginSaga(action) {
   });
 }
 
-export function* logoutSaga(action) {
-  const forceLogout = action?.payload?.forceLogout;
-  const disconnect = action?.payload?.disconnectwallet;
-  const account = action?.payload?.isConnected;
-  const navigate = action?.payload?.navigate;
-  if (forceLogout) {
-    if (account && disconnect) {
-      yield disconnect();
-    }
-    yield localStorage.clear();
-    yield sessionStorage.clear();
-    yield put(hideCustomModal());
-    if (navigate) navigate('/');
-    yield put(logoutSuccess());
-  } else {
-    yield put(logoutStart());
-    yield errorHandler({
-      endpoint: LOGOUT_URL,
-      successHandler: yield function* () {
-        yield put(hideCustomModal());
-        yield localStorage.removeItem('authToken');
-        if (navigate) navigate('/');
-        yield put(logoutSuccess());
-      },
-      failHandler: yield function* (response) {
-        yield put(logoutFail(response?.data?.msg));
-      },
-      failHandlerType: 'CUSTOM',
-      apiType: 'post'
-    });
-  }
+export function* logoutSaga() {
+  yield localStorage.clear();
+  yield sessionStorage.clear();
+  window.location.reload();
 }
 
 export function* refreshTokenSaga() {
