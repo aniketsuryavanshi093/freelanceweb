@@ -12,13 +12,22 @@ import BackDrop from './components/spinner/BackDrop';
 import { ToastContainer } from 'react-toastify';
 import CreateProfile from './views/signUp/createProfile/CreateProfile';
 import CreateJobCOntainer from './views/Client/CreateJob';
+import { useDispatch } from 'react-redux';
+import { getCurrentUserProfileAction } from './store/sagaActions';
 
 function App() {
   let authToken = localStorage.getItem('authToken');
   let createuserauthToken = localStorage.getItem('createUserauthToken');
+  const dispatch = useDispatch();
   let routes = [];
-  if (!authToken || !createuserauthToken) routes = guestRoutes;
-  else routes = userRoutes;
+  if (authToken || createuserauthToken) {
+    dispatch(getCurrentUserProfileAction());
+    routes = userRoutes;
+  } else {
+    routes = guestRoutes;
+  }
+  console.log(!authToken || !createuserauthToken);
+  console.log(routes);
   const mainContent = routes.map((route) =>
     route.component ? (
       <>

@@ -32,7 +32,8 @@ import {
   refreshTokenFail,
   registerlancerSuccess,
   registerlancerStart,
-  registerlancerFail
+  registerlancerFail,
+  getCurrentUserProfileAction
 } from '../../sagaActions';
 import { toast } from 'react-toastify';
 
@@ -48,11 +49,13 @@ export function* loginSaga(action) {
         yield localStorage.setItem('authToken', authToken);
         payload.navigate('/');
         window.location.reload();
+        yield put(loginSuccess({ data: response.data, authToken, roleType }));
       } else {
         yield localStorage.setItem('createUserauthToken', authToken);
+        yield put(getCurrentUserProfileAction());
         payload.navigate('/create-profile');
+        yield put(registerlancerSuccess(response.data));
       }
-      yield put(loginSuccess({ data: response.data, authToken, roleType }));
     },
     failHandlerType: 'CUSTOM',
     failHandler: yield function* (response) {

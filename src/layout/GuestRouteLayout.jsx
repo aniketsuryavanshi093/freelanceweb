@@ -22,4 +22,4 @@ function GuestRouteLayout({ children }) {
   );
 }
 
-export default SetTokenHeader(GuestRouteLayout, axiosMain);
+export default SetTokenHeader(GuestRouteLayout, axiosMain, 'createUserauthToken');

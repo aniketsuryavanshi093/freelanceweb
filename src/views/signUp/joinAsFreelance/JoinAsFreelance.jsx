@@ -4,6 +4,7 @@ import { countryjson } from '../../../constants/countryjson';
 import { useDispatch, useSelector } from 'react-redux';
 import './joinAsFreelance.css';
 import { registerfreelancerAction } from '../../../store/sagaActions/auth/auth';
+import { Spinner } from 'reactstrap';
 import { toast } from 'react-toastify';
 
 const JoinAsFreelance = () => {
@@ -14,8 +15,7 @@ const JoinAsFreelance = () => {
     password: '',
     Location: ''
   };
-  const { registerlancerData, isLoading, errorMsg } = useSelector((state) => state?.auth.register);
-  console.log({ registerlancerData, isLoading });
+  const { isLoading, errorMsg } = useSelector((state) => state?.auth.register);
   if (errorMsg) {
     toast.error(errorMsg);
   }
@@ -85,9 +85,8 @@ const JoinAsFreelance = () => {
                   />
                   Send me helpful emails to find rewarding work and job leads.
                 </label>
-
                 <button type="submit" className="rounded-pill addlanguagebtn w-100 px-3 py-2">
-                  Create my account
+                  {isLoading ? <Spinner size="sm" /> : 'Create my account'}
                 </button>
               </Form>
             )}

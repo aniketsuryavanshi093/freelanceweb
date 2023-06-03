@@ -21,4 +21,4 @@ function UserRouteLayout({ children }) {
   );
 }
 
-export default SetTokenHeader(UserRouteLayout, axiosMain);
+export default SetTokenHeader(UserRouteLayout, axiosMain, 'authToken');
