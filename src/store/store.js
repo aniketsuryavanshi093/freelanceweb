@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 
 import rootSaga from './saga';
-import { modalRootReducer, authRootReducer } from './reducer';
+import { modalRootReducer, authRootReducer, profileRootReducer } from './reducer';
 
 // setup saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -10,7 +10,8 @@ const sagaMiddleware = createSagaMiddleware();
 // create root reducer
 const rootReducer = {
   auth: authRootReducer,
-  modal: modalRootReducer
+  modal: modalRootReducer,
+  profile: profileRootReducer
 };
 
 // setup store

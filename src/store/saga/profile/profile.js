@@ -38,23 +38,21 @@ import {
   connectWalletStart,
   connectWalletSuccess,
   connectWalletFail,
-  resetModal,
-  getCurrentUserProfileAction
+  resetModal
 } from '../../sagaActions';
 
 // get current user profile Saga
 export function* getCurrentUserProfileSaga() {
-  yield put(getCurrentUserProfileStart());
+  console.log('👌👌👌👌');
   yield errorHandler({
-    endpoint: GET_CURRENT_USER_PROFILE,
+    endpoint: '/user/me',
     successHandler: yield function* (response) {
-      if (response?.data?.userType !== localStorage.getItem('roleType')) {
-        localStorage.setItem('roleType', response?.data?.userType);
-        yield put(getCurrentUserProfileAction());
-      }
       yield put(getCurrentUserProfileSuccess(response.data));
     },
-    failHandler: getCurrentUserProfileFail,
+    failHandler: yield function* (response) {
+      yield put(getCurrentUserProfileFail(response));
+    },
+    failHandlerType: 'CUSTOM',
     apiType: 'get'
   });
 }

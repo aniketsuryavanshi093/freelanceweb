@@ -55,5 +55,5 @@ function* watchUser() {
 }
 
 export default function* rootSaga() {
-  yield all([watchAuthentication()]);
+  yield all([watchAuthentication(), watchUser()]);
 }
