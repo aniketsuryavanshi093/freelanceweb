@@ -14,7 +14,8 @@ import {
   uploadUserProfilePicAction,
   updateAccountSettingAction,
   getUserBidsAction,
-  registerfreelancerAction
+  registerfreelancerAction,
+  createuserstep3Action
 } from '../sagaActions';
 
 import {
@@ -24,7 +25,8 @@ import {
   logoutSaga,
   forgotPasswordSaga,
   resetPasswordSaga,
-  refreshTokenSaga
+  refreshTokenSaga,
+  createuserstep3Saga
 } from './auth/auth';
 
 import {
@@ -44,6 +46,7 @@ function* watchAuthentication() {
   yield takeLatest(registerfreelancerAction.type, registerfreelancerSaga);
   yield takeLatest(forgotPasswordAction.type, forgotPasswordSaga);
   yield takeLatest(resetPasswordAction.type, resetPasswordSaga);
+  yield takeLatest(createuserstep3Action.type, createuserstep3Saga);
 }
 function* watchUser() {
   yield takeLatest(getCurrentUserProfileAction.type, getCurrentUserProfileSaga);

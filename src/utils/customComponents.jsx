@@ -64,7 +64,7 @@ export const CustomTextArea = ({ field, form: { touched, errors }, ...props }) =
         {...field}
         {...props}
       />
-      {error && touch && <div className="invalid-feedback">{error}</div>}
+      {error && touch && <div className="invalid-feedback d-block mb-1">{error}</div>}
     </div>
   );
 };

@@ -20,13 +20,15 @@ function App() {
   let createuserauthToken = localStorage.getItem('createUserauthToken');
   const dispatch = useDispatch();
   let routes = [];
-  if (authToken || createuserauthToken) {
+  if (createuserauthToken) {
+    dispatch(getCurrentUserProfileAction());
+    routes = createprofileroutes;
+  } else if (authToken) {
     dispatch(getCurrentUserProfileAction());
     routes = userRoutes;
   } else {
     routes = guestRoutes;
   }
-  console.log(!authToken || !createuserauthToken);
   console.log(routes);
   const mainContent = routes.map((route) =>
     route.component ? (

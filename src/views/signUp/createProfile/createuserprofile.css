@@ -36,6 +36,7 @@
 .exp-card {
   border: 1px solid #808080ad;
   border-radius: 10px;
+  max-height: 200px;
 }
 .userimgoverlay {
   bottom: 5px;

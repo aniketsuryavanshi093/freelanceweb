@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-pattern */
 import { Field, Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,6 +14,10 @@ const Login = () => {
     email: '',
     password: ''
   };
+  const validation = Yup.object({
+    email: Yup.string().email('Enter valid email').required('This field is required'),
+    password: Yup.string().required('This field is required')
+  });
   const { loginuser, isLoading, errorMsg } = useSelector((state) => state?.auth?.login);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,6 +31,7 @@ const Login = () => {
         <div className="login_body">
           <Formik
             initialValues={initialValue}
+            validationSchema={validation}
             onSubmit={(value) => {
               handleSubmit(value);
             }}>
