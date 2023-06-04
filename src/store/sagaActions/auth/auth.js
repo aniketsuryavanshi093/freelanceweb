@@ -9,3 +9,10 @@ export const authenticationValidatorAction = createAction('AUTHENTICATION_VALIDA
 
 export const registerfreelancerAction = createAction('REGISTER_LANCER_ACTION');
 export const resetPasswordAction = createAction('REST_PASSWORD_ACTION');
+
+export const createuserstep2Action = createAction('CREATE_USER_STEP2');
+export const createuserstep3Action = createAction('CREATE_USER_STEP3');
+export const createuserstep4Action = createAction('CREATE_USER_STEP4');
+export const createuserstep5Action = createAction('CREATE_USER_STEP5');
+export const createuserstep6Action = createAction('CREATE_USER_STEP6');
+export const createuserstep7Action = createAction('CREATE_USER_STEP7');

@@ -28,7 +28,7 @@ import {
   registerlancerSuccess,
   registerlancerStart,
   registerlancerFail,
-  getCurrentUserProfileAction
+  getCurrentUserProfileSuccess
 } from '../../sagaActions';
 import { toast } from 'react-toastify';
 
@@ -47,9 +47,7 @@ export function* loginSaga(action) {
         yield put(loginSuccess({ data: response.data, authToken, roleType }));
       } else {
         yield localStorage.setItem('createUserauthToken', authToken);
-        yield put(getCurrentUserProfileAction());
-        payload.navigate('/create-profile');
-        yield put(registerlancerSuccess(response.data));
+        window.location.reload();
       }
     },
     failHandlerType: 'CUSTOM',
@@ -117,22 +115,6 @@ export function* registerfreelancerSaga(action) {
         action.payload?.handleSuccess(response);
         yield put(registerlancerSuccess(response.data));
         localStorage.setItem('createUserauthToken', response?.data?.token);
-        // yield put(
-        //   showModal({
-        //     message: response.msg,
-        //     notifyType: 1,
-        //     showPrimaryButton: false,
-        //     showCloseButton: true,
-        //     handleClick: () => {
-        //       dispatch(hideModal());
-        //       openLoginModal();
-        //     }
-        //   })
-        // );
-        // yield setTimeout(() => {
-        //   dispatch(hideModal());
-        //   openLoginModal();
-        // }, 2000);
       },
       failHandler: yield function* (response) {
         yield put(registerlancerFail(response?.data?.msg));
@@ -179,7 +161,19 @@ export function* forgotPasswordSaga(action) {
     apiType: 'post'
   });
 }
-
+export function* createuserstep3Saga(action) {
+  const { handlesuccess, ExperienceData } = action.payload;
+  yield errorHandler({
+    endpoint: 'user/createuser?step=step3&type=freelancer',
+    successHandler: yield function* (response) {
+      handlesuccess();
+      yield put(getCurrentUserProfileSuccess(response.data));
+    },
+    failHandler: resetPasswordFail,
+    payload: ExperienceData,
+    apiType: 'post'
+  });
+}
 // forgot-password Saga
 export function* resetPasswordSaga(action) {
   yield put(resetPasswordStart());

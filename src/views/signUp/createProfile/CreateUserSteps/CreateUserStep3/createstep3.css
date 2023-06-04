@@ -1,0 +1,17 @@
+.exp_title {
+  font-size: medium;
+  font-weight: 600;
+}
+.exp_bio {
+  font-size: 14px;
+  font-weight: 500;
+}
+.add_exp {
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.add_exp_bg {
+  background: #def2ff;
+  max-height: 150px;
+}

@@ -1,11 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './createuserprofile.css';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import UserCard from '../../../components/UserCard/UserCard';
+import { Button, Progress } from 'reactstrap';
 import { useSelector } from 'react-redux';
+import useUserStepsContext from '../../../Context/CreateUsersteps/useUserStepsContext';
+import { progressobj } from '../../../constants';
 const CreateProfile = () => {
   const location = useLocation();
+  const [CurrentStep, setCurrentStep] = useState('');
+  const { progress, setprogress, isnextAllowed, handlenext } = useUserStepsContext();
   const { data: currentuser } = useSelector((state) => state?.profile?.currentUserProfile);
   console.log(currentuser);
   const navigate = useNavigate();
@@ -14,6 +19,8 @@ const CreateProfile = () => {
       if (Object.values(currentuser?.stepCompleted)?.some((elem) => elem && elem)) {
         for (const iterator of Object.keys(currentuser?.stepCompleted)) {
           if (!currentuser?.stepCompleted[iterator]) {
+            setCurrentStep(iterator);
+            setprogress(progressobj[`step${parseInt(iterator[iterator.length - 1]) - 1}`]);
             navigate(`/create-profile/${iterator}`);
             break;
           }
@@ -21,11 +28,19 @@ const CreateProfile = () => {
       }
     }
   }, [currentuser]);
-
+  console.log(location.pathname);
   return (
     <div className="container">
       {location.pathname.includes('step') ? (
-        <Outlet />
+        <>
+          <Outlet />
+          <div className="wrapper justify-end w-100 my-3">
+            <Button disabled={!isnextAllowed} onClick={() => handlenext(CurrentStep)}>
+              Next
+            </Button>
+          </div>
+          <Progress value={progress} />
+        </>
       ) : (
         <div className="wrapper createprofile_wrapper flex-wrap-reverse my-4">
           <div className="div1">

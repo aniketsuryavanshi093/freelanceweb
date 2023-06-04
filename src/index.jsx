@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
+import UserStepState from './Context/CreateUsersteps/UserStepState';
 
 const customStyles = {
   toast: {
@@ -28,7 +29,9 @@ window.Buffer = window.Buffer || Buffer;
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <UserStepState>
+      <App />
+    </UserStepState>
     <ToastContainer
       position="top-right"
       autoClose={5000}
