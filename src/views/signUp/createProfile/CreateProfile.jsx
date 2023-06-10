@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from 'react';
 import './createuserprofile.css';
@@ -16,6 +17,7 @@ const CreateProfile = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (currentuser?.FirstName) {
+      if()
       if (Object.values(currentuser?.stepCompleted)?.some((elem) => elem && elem)) {
         for (const iterator of Object.keys(currentuser?.stepCompleted)) {
           if (!currentuser?.stepCompleted[iterator]) {
@@ -28,7 +30,6 @@ const CreateProfile = () => {
       }
     }
   }, [currentuser]);
-  console.log(location.pathname);
   return (
     <div className="container">
       {location.pathname.includes('step') ? (
