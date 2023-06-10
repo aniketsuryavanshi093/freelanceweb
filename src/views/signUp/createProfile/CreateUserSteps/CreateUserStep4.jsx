@@ -1,9 +1,31 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, FieldArray } from 'formik';
+import { useDispatch } from 'react-redux';
 import LanguageSelector from './LanguageSelector';
+import useUserStepsContext from '../../../../Context/CreateUsersteps/useUserStepsContext';
+import { createuserstep4Action } from '../../../../store/sagaActions';
+import { progressobj } from '../../../../constants';
 
 const CreateUserStep4 = () => {
+  const { trigger, setisnextAllowed, settrigger, isnextAllowed } = useUserStepsContext();
+  const [languageData, setlanguageData] = useState([]);
+  const handlesuccess = () => {};
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (trigger === 'step4') {
+      dispatch(createuserstep4Action({ handlesuccess, languageData }));
+      setisnextAllowed(false);
+      settrigger('');
+    }
+  }, [trigger]);
+  useEffect(() => {
+    if (languageData?.languages?.length) {
+      console.log(languageData, isnextAllowed);
+      setisnextAllowed(true);
+    }
+  }, [languageData]);
+
   const createInitialValue = {
     languages: [
       {
@@ -27,7 +49,6 @@ const CreateUserStep4 = () => {
       </div>
       <Formik
         initialValues={createInitialValue}
-        // validationSchema={}
         onSubmit={(values) => {
           handleSubmit(values);
         }}
@@ -39,6 +60,7 @@ const CreateUserStep4 = () => {
                 <p style={{ flex: 1 }}>Profiency</p>
               </div>
               <div className="divider w-100 my-3"></div>
+              {setlanguageData(values)}
               <FieldArray
                 name="languages"
                 render={(arrayHelpers) => (

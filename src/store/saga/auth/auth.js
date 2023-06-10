@@ -174,6 +174,75 @@ export function* createuserstep3Saga(action) {
     apiType: 'post'
   });
 }
+export function* createuserstep4Saga(action) {
+  const { handlesuccess, languageData } = action.payload;
+  yield errorHandler({
+    endpoint: 'user/createuser?step=step4&type=freelancer',
+    successHandler: yield function* (response) {
+      handlesuccess();
+      yield put(getCurrentUserProfileSuccess(response.data));
+    },
+    failHandler: resetPasswordFail,
+    payload: languageData.languages,
+    apiType: 'post'
+  });
+}
+
+export function* createuserstep5Saga(action) {
+  const { handlesuccess, Skills } = action.payload;
+  yield errorHandler({
+    endpoint: 'user/createuser?step=step5&type=freelancer',
+    successHandler: yield function* (response) {
+      handlesuccess();
+      yield put(getCurrentUserProfileSuccess(response.data));
+    },
+    failHandler: resetPasswordFail,
+    payload: Skills,
+    apiType: 'post'
+  });
+}
+
+export function* createuserstep6Saga(action) {
+  const { handlesuccess, bio } = action.payload;
+  yield errorHandler({
+    endpoint: 'user/createuser?step=step6&type=freelancer',
+    successHandler: yield function* (response) {
+      handlesuccess();
+      yield put(getCurrentUserProfileSuccess(response.data));
+    },
+    failHandler: resetPasswordFail,
+    payload: { bio },
+    apiType: 'post'
+  });
+}
+
+export function* createuserstep7Saga(action) {
+  try {
+    const { phoneNumber, profilePic } = action.payload;
+    yield errorHandler({
+      endpoint: 'user/createuser?step=step7&type=freelancer',
+      successHandler: yield function* (response) {
+        console.log(response);
+        const TEMPTOKEN = localStorage.getItem('createUserauthToken');
+        localStorage.removeItem('createUserauthToken');
+        localStorage.setItem('authToken', TEMPTOKEN);
+        yield put(getCurrentUserProfileSuccess(response.data));
+        window.location.reload();
+      },
+      payload: {
+        phoneNumber,
+        profilePic
+      },
+      failHandler: yield function* (response) {
+        yield console.log(response);
+      },
+      failHandlerType: 'CUSTOM',
+      apiType: 'post'
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 // forgot-password Saga
 export function* resetPasswordSaga(action) {
   yield put(resetPasswordStart());

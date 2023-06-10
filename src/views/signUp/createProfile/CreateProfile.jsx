@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from 'react';
 import './createuserprofile.css';
@@ -28,7 +29,6 @@ const CreateProfile = () => {
       }
     }
   }, [currentuser]);
-  console.log(location.pathname);
   return (
     <div className="container">
       {location.pathname.includes('step') ? (
