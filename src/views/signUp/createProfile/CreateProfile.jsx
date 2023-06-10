@@ -17,7 +17,6 @@ const CreateProfile = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (currentuser?.FirstName) {
-      if()
       if (Object.values(currentuser?.stepCompleted)?.some((elem) => elem && elem)) {
         for (const iterator of Object.keys(currentuser?.stepCompleted)) {
           if (!currentuser?.stepCompleted[iterator]) {
