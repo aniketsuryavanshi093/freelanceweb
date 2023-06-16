@@ -50,3 +50,6 @@
 .remember_checkbox input:checked ~ .checkmark {
   background-color: green;
 }
+.reat-auth__single-value {
+  text-align: left !important;
+}

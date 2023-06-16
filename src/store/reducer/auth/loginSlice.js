@@ -20,7 +20,7 @@ const authSlice = createSlice({
     },
     loginSuccess: (state, { payload }) => {
       state.errorMsg = '';
-      state.loginuser = payload;
+      state.loginuser = payload.data;
       state.isLoading = false;
       state.authToken = payload?.authToken;
       state.roleType = payload?.roleType;

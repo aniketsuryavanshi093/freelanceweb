@@ -38,16 +38,18 @@ import {
   connectWalletStart,
   connectWalletSuccess,
   connectWalletFail,
-  resetModal
+  resetModal,
+  loginSuccess
 } from '../../sagaActions';
 
 // get current user profile Saga
-export function* getCurrentUserProfileSaga() {
+export function* getCurrentUserProfileSaga(action) {
   console.log('👌👌👌👌');
+  const { payload } = action;
   yield errorHandler({
-    endpoint: '/user/me',
+    endpoint: payload === 'client' ? '/client/me' : '/user/me',
     successHandler: yield function* (response) {
-      yield put(getCurrentUserProfileSuccess(response.data));
+      yield put(loginSuccess({ data: response?.data }));
     },
     failHandler: yield function* (response) {
       yield put(getCurrentUserProfileFail(response));

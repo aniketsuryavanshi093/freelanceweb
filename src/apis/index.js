@@ -8,6 +8,7 @@ export const LOGOUT_URL = '/logout';
 export const REFRESH_TOKEN_URL = '/auth/refreshToken';
 
 export const REGISTER_URL = '/user/registerUser';
+export const CLIENTREGISTER_URL = '/client/registerClient';
 
 export const FORGOT_PASSWORD_URL = '/auth/resetPassword';
 export const RESET_PASSWORD_URL = '/auth/confirmReset';

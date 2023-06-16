@@ -1,36 +1,52 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import {
+  ClientRoutes,
   createjobroutes,
+  createprofileclientroutes,
   createprofileroutes,
   guestRoutes,
   userRoutes
 } from './routes/mainRoutes/mainRoutes';
+import { useSelector, useDispatch } from 'react-redux';
 import { LayoutWrapper, ScrollToTop } from './components';
 import BackDrop from './components/spinner/BackDrop';
 import { ToastContainer } from 'react-toastify';
 import CreateProfile from './views/signUp/createProfile/CreateProfile';
 import CreateJobCOntainer from './views/Client/CreateJob';
-import { useDispatch } from 'react-redux';
 import { getCurrentUserProfileAction } from './store/sagaActions';
 
 function App() {
   let authToken = localStorage.getItem('authToken');
   let createuserauthToken = localStorage.getItem('createUserauthToken');
+  const currentuser = useSelector((state) => state?.auth?.login?.loginuser);
   const dispatch = useDispatch();
-  let routes = [];
-  if (createuserauthToken) {
-    dispatch(getCurrentUserProfileAction());
-    routes = createprofileroutes;
-  } else if (authToken) {
-    dispatch(getCurrentUserProfileAction());
-    routes = userRoutes;
-  } else {
-    routes = guestRoutes;
-  }
+  const [routes, setRoutes] = useState([]);
   console.log(routes);
-  const mainContent = routes.map((route) =>
+  useEffect(() => {
+    if (localStorage.getItem('createUserauthToken')) {
+      if (localStorage.getItem('userType') === 'client') {
+        setRoutes(createprofileclientroutes);
+      } else {
+        setRoutes(createprofileroutes);
+      }
+    } else if (localStorage.getItem('authToken')) {
+      if (localStorage.getItem('userType') === 'client') {
+        setRoutes(ClientRoutes);
+      } else {
+        setRoutes(userRoutes);
+      }
+    } else {
+      setRoutes(guestRoutes);
+    }
+  }, [currentuser]);
+  useEffect(() => {
+    if (createuserauthToken || authToken) {
+      dispatch(getCurrentUserProfileAction(localStorage.getItem('userType')));
+    }
+  }, []);
+  const mainContent = routes?.map((route) =>
     route.component ? (
       <>
         <Route
@@ -40,7 +56,8 @@ function App() {
           name={route.name}
           element={<route.component />}
         />
-        {!createuserauthToken && authToken && (
+
+        {authToken && currentuser?.userType === 'client' && (
           <Route path="createjob" element={<CreateJobCOntainer />}>
             {createjobroutes.map((elem) =>
               elem.component ? (
@@ -84,7 +101,7 @@ function App() {
     ) : (
       route.redirectRoute && (
         <>
-          {!authToken && <Route path="/" key={route.name} element={<Navigate to={route.path} />} />}
+          <Route path="/" key={route.name} element={<Navigate to={route.path} />} />
           <Route path="*" key={route.name} element={<Navigate to={route.path} />} />
         </>
       )
@@ -97,7 +114,6 @@ function App() {
       localStorage.setItem('deviceId', tempId.slice(tempId.lastIndexOf(')') + 1).trim(' '));
     }
   }, []);
-
   return (
     <Suspense fallback={<BackDrop open={true} />}>
       <Router>

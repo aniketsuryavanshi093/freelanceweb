@@ -32,6 +32,20 @@ export const guestRoutes = [
     path: '/login'
   }
 ];
+export const createprofileclientroutes = [
+  {
+    path: '/clientstep',
+    name: 'clientstep',
+    exact: true,
+    index: true,
+    component: lazy(() => import('../../views/signUp/createProfile/ClientUserSetup'))
+  },
+  {
+    redirectRoute: true,
+    name: 'clientstep',
+    path: '/clientstep'
+  }
+];
 export const createprofileroutes = [
   {
     path: '/create-profile',
@@ -101,16 +115,31 @@ export const userRoutes = [
     exact: true,
     component: lazy(() => import('../../views/User/Home/Home'))
   },
+
   {
-    path: '/createjob',
+    redirectRoute: true,
+    name: 'Home',
+    path: '/'
+  }
+];
+
+export const ClientRoutes = [
+  {
+    path: '/client',
+    name: 'Client',
+    exact: true,
+    component: lazy(() => import('../../views/User/Home/Home'))
+  },
+  {
+    path: '/client/createjob',
     name: 'CreateJob',
     exact: true,
     component: lazy(() => import('../../views/Client/CreateJob/CreateJob'))
   },
   {
     redirectRoute: true,
-    name: 'Home',
-    path: '/'
+    name: 'Client',
+    path: '/client'
   }
 ];
 export const createjobroutes = [
@@ -153,6 +182,6 @@ export const createjobroutes = [
   {
     redirectRoute: true,
     name: 'Home',
-    path: '/'
+    path: '/client'
   }
 ];
