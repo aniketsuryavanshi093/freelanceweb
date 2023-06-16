@@ -2,12 +2,17 @@ import { Field, Form, Formik } from 'formik';
 import Select from 'react-select';
 import { countryjson } from '../../../constants/countryjson';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import './joinAsFreelance.css';
-import { registerfreelancerAction } from '../../../store/sagaActions/auth/auth';
+import {
+  registerclientAction,
+  registerfreelancerAction
+} from '../../../store/sagaActions/auth/auth';
 import { Spinner } from 'reactstrap';
 import { toast } from 'react-toastify';
 
 const JoinAsFreelance = () => {
+  const { role } = useParams();
   const initialValue = {
     FirstName: '',
     LastName: '',
@@ -24,13 +29,19 @@ const JoinAsFreelance = () => {
     console.log(response, '😒😒😒');
   };
   const handleSubmit = (values) => {
-    dispatch(registerfreelancerAction({ ...values, handleSuccess, userType: 'freelancer' }));
-    console.log(values);
+    if (role === 'client') {
+      dispatch(registerclientAction({ ...values, handleSuccess, userType: 'client' }));
+    } else {
+      dispatch(registerfreelancerAction({ ...values, handleSuccess, userType: 'freelancer' }));
+      console.log(values);
+    }
   };
   return (
     <div className="container">
       <div className="form_body">
-        <span className="signup_head">Sign up to find work you love</span>
+        <span className="signup_head">
+          Sign up to {role == 'freelance' ? 'find work you love' : 'hire talent'}
+        </span>
         <div className="form_box">
           <Formik
             initialValues={initialValue}
@@ -61,18 +72,21 @@ const JoinAsFreelance = () => {
                   className="email_input"
                   placeholder="Password"
                 />
-                <Select
-                  className="my-3 w-100 reactselect_wrapper"
-                  style={{ width: '75%', flex: 1 }}
-                  classNamePrefix="react-select"
-                  isClearable={true}
-                  onChange={(e) => {
-                    setFieldValue(`Location`, e.value);
-                  }}
-                  isSearchable={true}
-                  name={`Location`}
-                  options={countryjson}
-                />
+
+                <div className="wrapper" style={{ width: '50%' }}>
+                  <Select
+                    className="my-3 w-100 "
+                    placeholder="Select Country"
+                    classNamePrefix="reat-auth"
+                    isClearable={true}
+                    onChange={(e) => {
+                      setFieldValue(`Location`, e.value);
+                    }}
+                    isSearchable={true}
+                    name={`Location`}
+                    options={countryjson}
+                  />
+                </div>
                 <label htmlFor="rememberMe">
                   <Field
                     id="rememberMe"

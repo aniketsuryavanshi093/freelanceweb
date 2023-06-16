@@ -30,14 +30,13 @@ const CreateUserStep4 = () => {
     languages: [
       {
         language: 'English',
-        profiency: ''
+        proficiency: ''
       }
     ]
   };
   const handleSubmit = (values) => {
     console.log(values);
   };
-
   return (
     <div className="wrapper mt-5 justify-content-start flex-column createprofile_wrapper my-4 w-100">
       <div className="w-100 my-4">
@@ -57,7 +56,7 @@ const CreateUserStep4 = () => {
             <div className="my-2 wrapper w-100 flex-column justify-content-start">
               <div className="wrapper flex-row w-100">
                 <p style={{ flex: 1 }}>Languages</p>
-                <p style={{ flex: 1 }}>Profiency</p>
+                <p style={{ flex: 1 }}>proficiency</p>
               </div>
               <div className="divider w-100 my-3"></div>
               {setlanguageData(values)}
@@ -80,7 +79,7 @@ const CreateUserStep4 = () => {
                         onClick={() => {
                           arrayHelpers.push({
                             language: '',
-                            profiency: ''
+                            proficiency: ''
                           });
                         }}
                         className="addlanguagebtn rounded-pill p-2 px-3">

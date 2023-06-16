@@ -92,15 +92,13 @@ export default function* errorHandler({
           yield put(failHandler(error.response.data.message || error.response.data.msg));
         }
       } else if (error.response.status === 404) {
-        if (failHandlerType === 'CUSTOM') {
-          yield failHandler(error.response.data.message);
-        } else {
-          yield put(failHandler(error.response.data.message));
-        }
-      } else if (error.response.status === 401) {
-        // yield failHandler(error.response);
         yield put(logoutAction());
-        // yield put(refreshTokenAction());
+      } else if (error.response.status === 401) {
+        if (failHandlerType === 'CUSTOM') {
+          yield failHandler(error.response.data.message || error.response.data.msg);
+        } else {
+          yield put(failHandler(error.response.data.message || error.response.data.msg));
+        }
       } else if (
         error.response.data &&
         error.response.data.message !== undefined &&

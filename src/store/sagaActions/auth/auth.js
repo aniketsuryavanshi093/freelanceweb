@@ -8,8 +8,9 @@ export const logoutAction = createAction('LOGOUT_ACTION');
 export const authenticationValidatorAction = createAction('AUTHENTICATION_VALIDATOR_ACTION');
 
 export const registerfreelancerAction = createAction('REGISTER_LANCER_ACTION');
+export const registerclientAction = createAction('REGISTER_CLIENT_ACTION');
 export const resetPasswordAction = createAction('REST_PASSWORD_ACTION');
-
+export const createClientStepAction = createAction('CREATE_CLIENT_STEP');
 export const createuserstep2Action = createAction('CREATE_USER_STEP2');
 export const createuserstep3Action = createAction('CREATE_USER_STEP3');
 export const createuserstep4Action = createAction('CREATE_USER_STEP4');

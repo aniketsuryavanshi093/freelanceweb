@@ -20,6 +20,7 @@ export const monthObj = {
   12: 'December'
 };
 export const progressobj = {
+  step1: '10',
   step2: '15',
   step3: '30',
   step4: '45',

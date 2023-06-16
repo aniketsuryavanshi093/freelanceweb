@@ -8,15 +8,16 @@ import { Button, Progress } from 'reactstrap';
 import { useSelector } from 'react-redux';
 import useUserStepsContext from '../../../Context/CreateUsersteps/useUserStepsContext';
 import { progressobj } from '../../../constants';
+
 const CreateProfile = () => {
   const location = useLocation();
-  const [CurrentStep, setCurrentStep] = useState('');
+  const [CurrentStep, setCurrentStep] = useState('step2');
+  const currentuser = useSelector((state) => state?.auth?.login?.loginuser);
   const { progress, setprogress, isnextAllowed, handlenext } = useUserStepsContext();
-  const { data: currentuser } = useSelector((state) => state?.profile?.currentUserProfile);
   console.log(currentuser);
   const navigate = useNavigate();
   useEffect(() => {
-    if (currentuser?.FirstName) {
+    if (currentuser?._id) {
       if (Object.values(currentuser?.stepCompleted)?.some((elem) => elem && elem)) {
         for (const iterator of Object.keys(currentuser?.stepCompleted)) {
           if (!currentuser?.stepCompleted[iterator]) {
@@ -29,6 +30,7 @@ const CreateProfile = () => {
       }
     }
   }, [currentuser]);
+  console.log('CurrentStep', CurrentStep);
   return (
     <div className="container">
       {location.pathname.includes('step') ? (
