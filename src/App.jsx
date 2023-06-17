@@ -108,7 +108,6 @@ function App() {
     )
   );
   useEffect(() => {
-    // create device ID
     if (!localStorage.getItem('deviceId')) {
       const tempId = navigator.userAgent + Math.floor(Math.random() * 10000000000000000);
       localStorage.setItem('deviceId', tempId.slice(tempId.lastIndexOf(')') + 1).trim(' '));

@@ -16,7 +16,7 @@ function UserRouteLayout({ children }) {
           />
         </Link>
       </div>
-      {children}
+      <div className="container">{children}</div>
     </div>
   );
 }

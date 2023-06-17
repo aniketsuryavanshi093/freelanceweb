@@ -2,10 +2,10 @@ import Select from 'react-select';
 import FilterComponent from '../../../../components/FilterComponent';
 import React, { useState } from 'react';
 
-const ToggleComponent = ({ profiency }) => {
+const ToggleComponent = ({ proficiency }) => {
   return (
     <div className=" wrapper justify-content-between px-2 profiency_select_wrapper">
-      <p className="text-capitalize">{profiency}</p>
+      <p className="text-capitalize">{proficiency}</p>
       <i className="fa-solid fa-chevron-down"></i>
     </div>
   );
@@ -60,7 +60,7 @@ const LanguageSelector = ({ values, setFieldValue, kdx, arrayHelpers }) => {
             styledata={{ width: '42%' }}
             toggleClassname="sitetogglebtn rounded"
             ToggleComponent={
-              <ToggleComponent profiency={values.languages[kdx].profiency || 'Basic'} />
+              <ToggleComponent proficiency={values.languages[kdx].proficiency || 'Basic'} />
             }
             openMenu={openFilter}
             setOpenMenu={setOpenFilter}>
@@ -69,7 +69,7 @@ const LanguageSelector = ({ values, setFieldValue, kdx, arrayHelpers }) => {
                 <div
                   key={elem.Label}
                   onClick={() => {
-                    setFieldValue(`languages[${kdx}].profiency`, elem.Label);
+                    setFieldValue(`languages[${kdx}].proficiency`, elem.Label);
                     setOpenFilter(false);
                   }}
                   className="justify-content-start my-2 cp px-2 ">
