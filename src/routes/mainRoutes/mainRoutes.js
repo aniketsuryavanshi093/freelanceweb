@@ -115,7 +115,12 @@ export const userRoutes = [
     exact: true,
     component: lazy(() => import('../../views/User/Home/Home'))
   },
-
+  {
+    path: '/profile',
+    name: 'profile',
+    exact: true,
+    component: lazy(() => import('../../views/User/Profile/Profile'))
+  },
   {
     redirectRoute: true,
     name: 'Home',

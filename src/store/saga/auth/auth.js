@@ -264,7 +264,7 @@ export function* createuserstep5Saga(action) {
       yield put(loginSuccess({ data: response.data }));
     },
     failHandler: resetPasswordFail,
-    payload: Skills,
+    payload: { Skills },
     apiType: 'post'
   });
 }
