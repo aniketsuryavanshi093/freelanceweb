@@ -1,22 +1,28 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore , combineReducers } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-
+import storage from 'redux-persist/lib/storage';
 import rootSaga from './saga';
-import { modalRootReducer, authRootReducer, profileRootReducer } from './reducer';
+import {persistReducer} from 'redux-persist'
+import { modalRootReducer, authRootReducer, profileRootReducer, jobRootReducer } from './reducer';
+import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 // setup saga middleware
 const sagaMiddleware = createSagaMiddleware();
-
+const presistconfg = {
+  key: 'root'
+,
+stateReconciler: autoMergeLevel2,
+version: 1, storage}
 // create root reducer
-const rootReducer = {
+const rootReducer = combineReducers({
   auth: authRootReducer,
   modal: modalRootReducer,
+  job: jobRootReducer,
   profile: profileRootReducer
-};
-
-// setup store
+});
+const persistedstate = persistReducer(presistconfg , rootReducer)
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedstate,
   devTools: true,
   middleware: [sagaMiddleware]
 });

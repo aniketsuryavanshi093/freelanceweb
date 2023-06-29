@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { Buffer } from 'buffer';
-
 import store from './store/store';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
@@ -14,6 +13,8 @@ import './assets/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 import UserStepState from './Context/CreateUsersteps/UserStepState';
+import { PersistGate } from 'redux-persist/integration/react';
+import persistStore from 'redux-persist/es/persistStore';
 
 const customStyles = {
   toast: {
@@ -23,14 +24,16 @@ const customStyles = {
     color: '#000713'
   }
 };
-
+let peristor = persistStore(store);
 // it just overrides the buffer from window or if buffer is not in window it adds the buffer
 window.Buffer = window.Buffer || Buffer;
-
+store.subscribe(() => {});
 ReactDOM.render(
   <Provider store={store}>
     <UserStepState>
-      <App />
+      <PersistGate persistor={peristor}>
+        <App />
+      </PersistGate>
     </UserStepState>
     <ToastContainer
       position="top-right"

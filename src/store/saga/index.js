@@ -21,7 +21,8 @@ import {
   createuserstep6Action,
   createuserstep7Action,
   registerclientAction,
-  createClientStepAction
+  createClientStepAction,
+  createJobPostAction
 } from '../sagaActions';
 import {
   authenticationValidatorSaga,
@@ -48,6 +49,7 @@ import {
   getOtherUserProfileSaga,
   uploadProfilePicSaga
 } from './profile/profile';
+import { createJobSaga } from './job';
 function* watchAuthentication() {
   yield takeLatest(loginAction.type, loginSaga);
   yield takeLatest(refreshTokenAction.type, refreshTokenSaga);
@@ -74,7 +76,9 @@ function* watchUser() {
   yield takeLatest(updateAccountSettingAction.type, updateAccountSettingSaga);
   yield takeLatest(getUserBidsAction.type, getUserBidsSaga);
 }
-
+function* watchJob(){
+  yield takeLatest(createJobPostAction.type, createJobSaga)
+}
 export default function* rootSaga() {
-  yield all([watchAuthentication(), watchUser()]);
+  yield all([watchAuthentication(), watchUser() , watchJob()]);
 }

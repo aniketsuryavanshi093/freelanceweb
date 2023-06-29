@@ -23,7 +23,7 @@ function App() {
   const currentuser = useSelector((state) => state?.auth?.login?.loginuser);
   const dispatch = useDispatch();
   const [routes, setRoutes] = useState([]);
-  console.log(routes);
+  console.log(routes, createprofileroutes);
   useEffect(() => {
     if (localStorage.getItem('createUserauthToken')) {
       if (localStorage.getItem('userType') === 'client') {
@@ -33,7 +33,7 @@ function App() {
       }
     } else if (localStorage.getItem('authToken')) {
       if (localStorage.getItem('userType') === 'client') {
-        setRoutes(ClientRoutes);
+        setRoutes([...ClientRoutes, ...createjobroutes]);
       } else {
         setRoutes(userRoutes);
       }
@@ -58,7 +58,7 @@ function App() {
         />
 
         {authToken && currentuser?.userType === 'client' && (
-          <Route path="createjob" element={<CreateJobCOntainer />}>
+          <Route path="/client/createjob" element={<CreateJobCOntainer />}>
             {createjobroutes.map((elem) =>
               elem.component ? (
                 <Route
@@ -71,7 +71,7 @@ function App() {
                 />
               ) : (
                 route.redirectRoute && (
-                  <Route path="*" key={route.name} element={<Navigate to="/" />} />
+                  <Route path="*" key={route.name} element={<Navigate to="/createjob" />} />
                 )
               )
             )}
