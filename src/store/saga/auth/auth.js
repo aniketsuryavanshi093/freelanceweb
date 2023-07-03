@@ -120,7 +120,8 @@ export function* registerfreelancerSaga(action) {
         localStorage.setItem('userType', response?.data?.userType);
       },
       failHandler: yield function* (response) {
-        yield put(registerlancerFail(response?.data?.msg));
+        // toast.error(response)
+        yield put(registerlancerFail(response));
       },
       payload: { ...action.payload },
       apiType: 'post',
@@ -169,6 +170,7 @@ export function* registerclientSaga(action) {
         // window.location.reload();
       },
       failHandler: yield function* (response) {
+        toast.error(response)
         yield put(registerlancerFail(response?.data?.msg));
       },
       payload: { ...action.payload },

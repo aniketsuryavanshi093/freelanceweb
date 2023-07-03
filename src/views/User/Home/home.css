@@ -1,0 +1,63 @@
+.workcontainer{
+    border-radius: 20px;
+    border: 1px solid grey;
+    height: auto;
+}
+.findtab{
+    border-bottom: 1px solid #ded8d8;
+}
+.activelist{
+    border-bottom: 2px solid black;
+    margin-top: 1px;
+}
+.skillstab{
+    background-color: #e4ebe4;
+    border-radius: 10px;
+    padding: 2px 10px;
+
+}
+.proporsalcount{
+    font-weight: 700;
+    color: black!important;
+}
+.wishlisticon{
+    height: 30px;
+    background-color: white;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid grey;
+}
+.jobscard{
+    border-bottom: 1px solid rgb(227, 226, 226);
+}
+.jobscard:hover{
+    transition: all 0.2s;
+    background-color: #f8f6f6
+}
+/* job side bar css */
+.sidebarjobwrapper{
+    width: 82vw;
+}
+.jobinfo{
+    border-radius: 13px;
+    border: 1px solid rgb(181, 181, 180);
+}
+.clientrelated{
+    flex: 1.5;
+}
+.jobrelated{
+    flex: 3.5;
+    border-right: 1px solid rgb(181, 181, 180);
+}
+.occupationinfo{
+    color: green;
+    font-size: 14px;
+}
+.jobmutedtext{
+    font-size: 12px;
+    font-weight: 600;
+}
+.clienthistorywrapper{
+    border-radius: 13px;
+    border: 1px solid rgb(181, 181, 180);
+}

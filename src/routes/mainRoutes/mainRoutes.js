@@ -139,7 +139,7 @@ export const ClientRoutes = [
     path: '/client/createjob',
     name: 'CreateJob',
     exact: true,
-    component: lazy(() => import('../../views/Client/CreateJob/CreateJob'))
+    component: lazy(() => import('../../views/Client/CreateJob/index'))
   },
   {
     redirectRoute: true,
@@ -149,38 +149,34 @@ export const ClientRoutes = [
 ];
 export const createjobroutes = [
   {
-    path: '/createjob',
+    path: '/client/createjob/headline',
     name: 'createjob',
-    exact: true,
-    component: lazy(() => import('../../views/Client/CreateJob/index'))
-  },
-  {
-    path: 'headline',
-    name: 'headline',
-    exact: true,
+    index: true,
+    exact: true,  
     component: lazy(() => import('../../views/Client/CreateJob/CreateJob'))
   },
+ 
   {
-    path: 'scope',
-    name: 'scope',
+    path: '/client/createjob/scope',
+    name: 'createjob',
     exact: true,
     component: lazy(() => import('../../views/Client/CreateJob/JobScope'))
   },
   {
-    path: 'budget',
-    name: 'budget',
+    path: '/client/createjob/budget',
+    name: 'createjob',
     exact: true,
     component: lazy(() => import('../../views/Client/CreateJob/JobBudget'))
   },
   {
-    path: 'skills',
-    name: 'skills',
+    path: '/client/createjob/skills',
+    name: 'createjob',
     exact: true,
     component: lazy(() => import('../../views/Client/CreateJob/JobSkills'))
   },
   {
-    path: 'finalstep',
-    name: 'finalstep',
+    path: '/client/createjob/finalstep',
+    name: 'createjob',
     exact: true,
     component: lazy(() => import('../../views/Client/CreateJob/FinalStep'))
   },

@@ -1,0 +1,16 @@
+.headertabli{
+    list-style: none;    padding: 10px 3px;
+}
+.headerprofile{
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.bellicon{
+    font-size: 20px;
+}
+.header-item{
+     background: transparent;
+    border: none ;
+}

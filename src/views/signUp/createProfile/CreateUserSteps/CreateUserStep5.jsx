@@ -29,7 +29,6 @@ const CreateUserStep5 = () => {
   const [SkillsData, setSkillsData] = useState([]);
   const handlesuccess = () => {};
   const dispatch = useDispatch();
-  console.log(value);
   useEffect(() => {
     if (trigger === 'step5') {
       dispatch(createuserstep5Action({ handlesuccess, Skills: SkillsData }));
