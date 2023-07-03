@@ -7,7 +7,6 @@ import store from './store/store';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,6 +14,8 @@ import './index.css';
 import UserStepState from './Context/CreateUsersteps/UserStepState';
 import { PersistGate } from 'redux-persist/integration/react';
 import persistStore from 'redux-persist/es/persistStore';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const customStyles = {
   toast: {
@@ -27,12 +28,16 @@ const customStyles = {
 let peristor = persistStore(store);
 // it just overrides the buffer from window or if buffer is not in window it adds the buffer
 window.Buffer = window.Buffer || Buffer;
+const queryClient = new QueryClient();
 store.subscribe(() => {});
 ReactDOM.render(
   <Provider store={store}>
     <UserStepState>
       <PersistGate persistor={peristor}>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+          <ReactQueryDevtools />
+        </QueryClientProvider>
       </PersistGate>
     </UserStepState>
     <ToastContainer

@@ -23,7 +23,7 @@ function App() {
   const currentuser = useSelector((state) => state?.auth?.login?.loginuser);
   const dispatch = useDispatch();
   const [routes, setRoutes] = useState([]);
-  console.log(routes, createprofileroutes);
+  console.log(routes);
   useEffect(() => {
     if (localStorage.getItem('createUserauthToken')) {
       if (localStorage.getItem('userType') === 'client') {
@@ -56,7 +56,6 @@ function App() {
           name={route.name}
           element={<route.component />}
         />
-
         {authToken && currentuser?.userType === 'client' && (
           <Route path="/client/createjob" element={<CreateJobCOntainer />}>
             {createjobroutes.map((elem) =>

@@ -1,0 +1,22 @@
+.dashboard-header_search {
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  color: black;
+  background-color:  #fafafa;
+  padding: 7px 32px;
+}
+.search {
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.searchclose {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}

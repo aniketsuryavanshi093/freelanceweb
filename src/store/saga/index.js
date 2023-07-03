@@ -18,11 +18,13 @@ import {
   createuserstep2Action,
   createuserstep4Action,
   createuserstep5Action,
-  createuserstep6Action,
+  createuserstep6Action,removeWishlistAction,
   createuserstep7Action,
   registerclientAction,
   createClientStepAction,
-  createJobPostAction
+  createJobPostAction,
+  getJobRecommendAction,
+  setWishlistAction
 } from '../sagaActions';
 import {
   authenticationValidatorSaga,
@@ -49,7 +51,7 @@ import {
   getOtherUserProfileSaga,
   uploadProfilePicSaga
 } from './profile/profile';
-import { createJobSaga } from './job';
+import { createJobSaga,recommendJobSaga ,setWishlistSaga,removewishlistSaga} from './job';
 function* watchAuthentication() {
   yield takeLatest(loginAction.type, loginSaga);
   yield takeLatest(refreshTokenAction.type, refreshTokenSaga);
@@ -78,6 +80,9 @@ function* watchUser() {
 }
 function* watchJob(){
   yield takeLatest(createJobPostAction.type, createJobSaga)
+  yield takeLatest(setWishlistAction.type, setWishlistSaga)
+  yield takeLatest(getJobRecommendAction.type, recommendJobSaga)
+  yield takeLatest(removeWishlistAction.type, removewishlistSaga)
 }
 export default function* rootSaga() {
   yield all([watchAuthentication(), watchUser() , watchJob()]);

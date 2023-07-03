@@ -7,6 +7,9 @@ a {
   display: flex;
   align-items: center;
 }
+.text_muted{
+  color: var(--text-muted);
+}
 p{
   margin-bottom: 0 !important;
 }
